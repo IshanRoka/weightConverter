@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: none;
+            outline: none;
+        }
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,113,208,1) 40%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 400px;
+            border: 1px solid bisque;
+            padding: 3rem 4rem;
+            border-radius: 0.4rem;
+            box-shadow: 0.2rem 0.3rem  rgba(0,0,0,0.3);
+        }
+        h1{
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+        p,label{
+            font-size: 1.6rem;
+            margin: 1rem 0;
+        }
+        input{
+            width: 60%;
+            padding: 0.5rem 0.5rem;
+            background: transparent;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Weight Converter</h1>
+        <div class="input-countainer">
+            <label for="pounds">Pounds:</label>
+            <input type="number" class="input" id="ipnut" step="0.1" placeholder="Enter weight">
+        </div>
+        <p>Your weight in kg is: <span class="result"></span></p>
+        <p class="error"></p>
+    </div>
+    <script>
+        const input=document.querySelector(".input");
+        const error=document.querySelector(".error");
+        const result=document.querySelector(".result");
+        let errorTime;
+
+        input.addEventListener("input",()=>{
+            if(input.value<=0||input.value===""){
+                error.innerHTML="Please enter a valid number";
+                clearTimeout(errorTime)
+                errorTime=setTimeout(()=>{
+                    error.innerHTML="";
+                    input.value=""
+                },2000)
+            }
+            else{
+                result.innerHTML=(input.value/2.2).toFixed(2);
+            }
+        })
+    </script>
+</body>
+</html>
